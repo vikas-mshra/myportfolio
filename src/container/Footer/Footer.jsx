@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
+import React, { useRef, useState } from "react";
 import { client } from "../../client";
 import { images } from "../../constants";
 import { AppWrap, MotionWrap } from "../../wrapper";
-import { motion } from "framer-motion";
 import "./Footer.scss";
 
 const Footer = () => {
@@ -11,6 +12,7 @@ const Footer = () => {
     email: "",
     message: "",
   });
+  const form = useRef();
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const { name, email, message } = formData;
@@ -21,7 +23,10 @@ const Footer = () => {
       [name]: value,
     }));
   };
-  const handleSubmit = () => {
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(form.current);
     setLoading(true);
     const contact = {
       _type: "contact",
@@ -29,10 +34,26 @@ const Footer = () => {
       email,
       message,
     };
+
     client.create(contact).then(() => {
       setLoading(false);
       setIsFormSubmitted(true);
     });
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_EMAIL_SERVICE_ID,
+        process.env.REACT_APP_EMAIL_TEMPLATE_ID,
+        form.current,
+        process.env.REACT_APP_EMAIL_PUBLIC_ID
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
   return (
     <>
@@ -56,7 +77,11 @@ const Footer = () => {
           </a>
         </div>
         {!isFormSubmitted ? (
-          <div className="app__footer-form app__flex">
+          <form
+            ref={form}
+            onSubmit={handleSubmit}
+            className="app__footer-form app__flex"
+          >
             <div className="app__flex">
               <input
                 className="p-text"
@@ -86,10 +111,10 @@ const Footer = () => {
                 onChange={handleChangeInput}
               />
             </div>
-            <button typ="button" className="p-text" onClick={handleSubmit}>
+            <button type="submit" className="p-text">
               {loading ? "Sending..." : "Send Message"}
             </button>
-          </div>
+          </form>
         ) : (
           <div className="app__thanks">
             <div>

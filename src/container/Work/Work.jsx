@@ -41,7 +41,7 @@ const Work = () => {
         {["UI/UX", "Web App", "Python", "React JS", "All"].map(
           (item, index) => (
             <div
-              key={index}
+              key={item}
               onClick={() => handleWorkFilter(item)}
               className={`app__work-filter-item app__flex p-text ${
                 activeFilter === item ? "item-active" : ""
@@ -57,8 +57,8 @@ const Work = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__work-portfolio"
       >
-        {filterWork.map((work, index) => (
-          <div className="app__work-item app__flex" key={index}>
+        {filterWork.map((work) => (
+          <div className="app__work-item app__flex" key={work.title}>
             <div className="app__work-img app__flex">
               <img src={urlFor(work.imgUrl)} alt={work.name} />
               <motion.div
@@ -80,7 +80,7 @@ const Work = () => {
                     <AiFillEye />
                   </motion.div>
                 </a>
-                <a href={work.projectLink} target="_blank" rel="noreferrer">
+                <a href={work.codeLink} target="_blank" rel="noreferrer">
                   <motion.div
                     whileInView={{ scale: [0, 1] }}
                     whileHover={{ scale: [1, 0.9] }}

@@ -91,7 +91,7 @@ const Footer = () => {
             </button>
           </div>
         ) : (
-          <>
+          <div className="app__thanks">
             <div>
               <motion.div
                 whileInView={{ opacity: [0, 1] }}
@@ -109,7 +109,7 @@ const Footer = () => {
               </motion.div>
             </div>
             <h3 className="head-text">Thank you for getting in touch</h3>
-          </>
+          </div>
         )}
       </div>
     </>

@@ -34,11 +34,9 @@ const Work = () => {
   };
   return (
     <>
-      <h2 className="head-text">
-        Projects
-      </h2>
+      <h2 className="head-text">Projects</h2>
       <div className="app__work-filter">
-        {["UI/UX", "Web App", "Python", "React JS", "C++", "All"].map(
+        {["UI/UX", "Machine Learning", "Python", "React JS", "C++", "All"].map(
           (item) => (
             <div
               key={item}
@@ -58,7 +56,11 @@ const Work = () => {
         className="app__work-portfolio"
       >
         {filterWork.map((work) => (
-          <div className="app__work-item app__flex" key={work.title}>
+          <div
+            className="app__work-item app__flex"
+            key={work.title}
+            style={{ height: "392px", justifyContent: "space-between" }}
+          >
             <div className="app__work-img app__flex">
               <img src={urlFor(work.imgUrl)} alt={work.name} />
               <motion.div

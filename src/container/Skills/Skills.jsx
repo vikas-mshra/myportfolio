@@ -66,7 +66,7 @@ const Skills = () => {
                 style={{ width: "fit-content" }}
               >
                 {experience.works.map((work) => (
-                  <>
+                  <React.Fragment key={work.desc}>
                     <div
                       data-tooltip-id={work.name}
                       data-tooltip-content={work.desc}
@@ -90,7 +90,7 @@ const Skills = () => {
                       arrowColor="#fff"
                       className="skills-tooltip"
                     />
-                  </>
+                  </React.Fragment>
                 ))}
               </motion.div>
             </motion.div>

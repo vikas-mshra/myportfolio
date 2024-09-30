@@ -76,6 +76,17 @@ const Footer = () => {
           </a>
         </div>
         <div className="app__footer-card">
+          <img src={images.resume} alt="resume download"/>
+          <a
+            href="/resources/VikasMishraResume.pdf"
+            className="p-text"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Resume
+          </a>
+        </div>
+        <div className="app__footer-card">
           <img src={images.linkedin} alt="email" />
           <a
             href="https://www.linkedin.com/in/vikas-mshra/"

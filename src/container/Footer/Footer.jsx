@@ -6,6 +6,12 @@ import { images } from "../../constants";
 import { AppWrap, MotionWrap } from "../../wrapper";
 import "./Footer.scss";
 
+const isAnyFieldOnlySpaces = (formData) => {
+  return Object.values(formData).some(
+    (value) => typeof value === "string" && value.trim() === ""
+  );
+};
+
 const Footer = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,7 +32,11 @@ const Footer = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(form.current);
+    if (isAnyFieldOnlySpaces(formData)) {
+      alert("Invalid Input! Enter some valid text");
+      return;
+    }
+
     setLoading(true);
     const contact = {
       _type: "contact",
@@ -90,16 +100,18 @@ const Footer = () => {
                 onChange={handleChangeInput}
                 name="name"
                 value={name}
+                required
               />
             </div>
             <div className="app__flex">
               <input
                 className="p-text"
-                type="text"
+                type="email"
                 placeholder="your email"
                 onChange={handleChangeInput}
                 name="email"
                 value={email}
+                required
               />
             </div>
             <div>
@@ -109,6 +121,7 @@ const Footer = () => {
                 value={message}
                 name="message"
                 onChange={handleChangeInput}
+                required
               />
             </div>
             <button type="submit" className="p-text">

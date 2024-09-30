@@ -16,8 +16,12 @@ const About = () => {
   return (
     <>
       <h2 className="head-text">
-        Seeking a Software Developer Internship to utilize my expertise in 
-        <span> ReactJS</span> and over 3 years of<br/>Experience in <span>Java</span>
+        Seeking a Software Developer role to leverage my 4+ years of experience
+        in <span>ReactJS</span> and <span>Java</span>. Proficient in popular
+        frontend technologies such as
+        <span>TypeScript</span>, <span>Next.js</span>, and{" "}
+        <span>JavaScript</span>, as well as backend frameworks including{" "}
+        <span>Spring Boot</span> and <span>Node.js</span>
       </h2>
       <div className="app__profiles">
         {abouts.map((about, index) => (

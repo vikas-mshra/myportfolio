@@ -20,10 +20,10 @@ const About = () => {
         in&nbsp;
         <span>ReactJS</span>, <span>Java</span>, and{" "}
         <span>Machine Learning</span>. Proficient in popular frontend
-        technologies like <span>TypeScript</span>,<span>Next.js</span>, and{" "}
+        technologies like <span>TypeScript</span>,&nbsp;<span>Next.js</span>, and{" "}
         <span>JavaScript</span>, as well as backend frameworks including{" "}
         <span>Spring Boot</span>, <span>Node.js</span>, and ML libraries such as{" "}
-        <span>LangChain</span>, <span>Llama-3.1-70b</span>,
+        <span>LangChain</span>, <span>Llama-3.1-70b</span>,&nbsp;
         <span>Stable Diffusion</span>, <span>PyTorch</span>, and&nbsp;
         <span>Hugging Face Diffusers</span>, along with image processing tools
         like&nbsp;

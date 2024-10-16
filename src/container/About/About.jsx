@@ -17,14 +17,17 @@ const About = () => {
     <>
       <h2 className="head-text">
         Seeking a Software Developer role to leverage my 4+ years of experience
-        in
+        in&nbsp;
         <span>ReactJS</span>, <span>Java</span>, and{" "}
         <span>Machine Learning</span>. Proficient in popular frontend
         technologies like <span>TypeScript</span>,<span>Next.js</span>, and{" "}
         <span>JavaScript</span>, as well as backend frameworks including{" "}
-        <span>Spring Boot</span>, <span>Node.js</span>, and ML libraries such as
-        <span>LangChain</span>, <span>Llama-3.1-70b</span>, and <span>KNN</span>
-        .
+        <span>Spring Boot</span>, <span>Node.js</span>, and ML libraries such as{" "}
+        <span>LangChain</span>, <span>Llama-3.1-70b</span>,
+        <span>Stable Diffusion</span>, <span>PyTorch</span>, and&nbsp;
+        <span>Hugging Face Diffusers</span>, along with image processing tools
+        like&nbsp;
+        <span>Pillow</span>.
       </h2>
 
       <div className="app__profiles">

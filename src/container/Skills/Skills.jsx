@@ -57,20 +57,21 @@ const Skills = () => {
         </motion.div>
         <motion.div className="app__skills-exp">
           {experiences.map((experience) => (
-            <motion.div
-              className="app__skills-exp-item"
-              key={experience.year}
-            >
+            <motion.div className="app__skills-exp-item" key={experience.year}>
               <div className="app__skills-exp-year">
                 <p className="bold-text">{experience.year}</p>
               </div>
-              <motion.div className="app__skills-exp-works">
+              <motion.div
+                className="app__skills-exp-works"
+                style={{ width: "fit-content" }}
+              >
                 {experience.works.map((work) => (
-                  <>
-                    <a
+                  <React.Fragment key={work.desc}>
+                    <div
                       data-tooltip-id={work.name}
                       data-tooltip-content={work.desc}
                       data-tooltip-place="top"
+                      aria-label={`${work.name} in ${work.company}`}
                     >
                       <motion.div
                         whileInView={{ opacity: [0, 1] }}
@@ -83,13 +84,13 @@ const Skills = () => {
                         <h4 className="bold-text">{work.name}</h4>
                         <p className="p-text">{work.company}</p>
                       </motion.div>
-                    </a>
+                    </div>
                     <Tooltip
                       id={work.name}
                       arrowColor="#fff"
                       className="skills-tooltip"
                     />
-                  </>
+                  </React.Fragment>
                 ))}
               </motion.div>
             </motion.div>

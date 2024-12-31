@@ -15,21 +15,24 @@ const About = () => {
 
   return (
     <>
-      <h2 className="head-text">
-        Seeking a Software Developer role to leverage my 4+ years of experience
-        in&nbsp;
-        <span>ReactJS</span>, <span>Java</span>, and{" "}
+      <h3 className="summary-text">
+        Recent Master of Computer Science graduate, seeking a Software Developer
+        role to leverage my 5+ years of experience in&nbsp;
+        <span>ReactJS</span>, <span>Java</span>, and&nbsp;
         <span>Machine Learning</span>. Proficient in popular frontend
-        technologies like <span>TypeScript</span>,&nbsp;<span>Next.js</span>, and{" "}
-        <span>JavaScript</span>, as well as backend frameworks including{" "}
-        <span>Spring Boot</span>, <span>Node.js</span>, and ML libraries such as{" "}
+        technologies like <span>TypeScript</span>,&nbsp;<span>Next.js</span>,
+        and&nbsp;
+        <span>JavaScript</span>, as well as backend frameworks including&nbsp;
+        <span>Spring Boot</span>, <span>Node.js</span>, and ML libraries such
+        as&nbsp;
         <span>LangChain</span>, <span>Llama-3.1-70b</span>,&nbsp;
         <span>Stable Diffusion</span>, <span>PyTorch</span>, and&nbsp;
-        <span>Hugging Face Diffusers</span>, along with image processing tools
-        like&nbsp;
-        <span>Pillow</span>.
-      </h2>
-
+        <span>Hugging Face Diffusers</span>, along with image processing
+        tools&nbsp;
+        <span>Pillow</span>. Skilled in AWS services like <span>S3</span>,{" "}
+        <span>Lambda</span>, <span>Glue</span>, <span>Athena</span>, and{" "}
+        <span>QuickSight</span> for scalable data management and analytics.
+      </h3>
       <div className="app__profiles">
         {abouts.map((about, index) => (
           <motion.div

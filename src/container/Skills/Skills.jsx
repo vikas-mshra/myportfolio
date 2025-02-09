@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Tooltip } from "react-tooltip";
+import React, { useEffect, useState } from "react";
+import { client, urlFor } from "../../client";
 import { AppWrap, MotionWrap } from "../../wrapper";
-import { urlFor, client } from "../../client";
 
 import "./Skills.scss";
 const parseYear = (year) => {
   const parts = year.split("-");
-  const endYear = parseInt(parts[1] || new Date().getFullYear()); // Default to current year if end year is not provided
-  return endYear;
+  const startYear = parseInt(parts[0]);
+  const endYear = parseInt(
+    parts[1] === "Present" ? new Date().getFullYear() : parts[1]
+  );
+  return { startYear, endYear };
 };
 const Skills = () => {
   const [experiences, setExperiences] = useState([]);
@@ -18,17 +20,30 @@ const Skills = () => {
     const skillsQUery = '*[_type=="skills"]';
     client.fetch(query).then((data) => {
       data.sort((a, b) => {
-        const yearA = parseYear(a.year);
-        const yearB = parseYear(b.year);
+        const { startYear: yearAStart, endYear: yearAEnd } = parseYear(a.year);
+        const { startYear: yearBStart, endYear: yearBEnd } = parseYear(b.year);
 
-        if (yearA < yearB) return -1;
-        if (yearA > yearB) return 1;
-        return 0;
+        if (yearAStart < yearBStart) {
+          return 1;
+        } else if (yearAStart > yearBStart) {
+          return -1;
+        } else if (yearAEnd < yearBEnd) {
+          return 1;
+        } else if (yearAEnd > yearBEnd) {
+          return -1;
+        } else {
+          return 0;
+        }
       });
       setExperiences(data);
     });
 
     client.fetch(skillsQUery).then((data) => {
+      data.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      })
       setSkills(data);
     });
   }, []);
@@ -61,36 +76,26 @@ const Skills = () => {
               <div className="app__skills-exp-year">
                 <p className="bold-text">{experience.year}</p>
               </div>
-              <motion.div
-                className="app__skills-exp-works"
-                style={{ width: "fit-content" }}
-              >
+              <motion.div className="app__skills-exp-works">
                 {experience.works.map((work) => (
-                  <React.Fragment key={work.desc}>
-                    <div
-                      data-tooltip-id={work.name}
-                      data-tooltip-content={work.desc}
-                      data-tooltip-place="top"
-                      aria-label={`${work.name} in ${work.company}`}
-                    >
-                      <motion.div
-                        whileInView={{ opacity: [0, 1] }}
-                        transition={{ duration: 0.5 }}
-                        className="app__skills-exp-work"
-                        data-tip
-                        data-for={work.name}
-                        key={work.name}
-                      >
-                        <h4 className="bold-text">{work.name}</h4>
-                        <p className="p-text">{work.company}</p>
-                      </motion.div>
+                  <motion.div
+                    whileInView={{ opacity: [0, 1] }}
+                    transition={{ duration: 0.5 }}
+                    className="app__skills-exp-work"
+                    key={work.name}
+                  >
+                    <div className="work-header">
+                      <h4 className="bold-text">{work.name}</h4>
+                      <h5 className="p-text">{work.company}</h5>
                     </div>
-                    <Tooltip
-                      id={work.name}
-                      arrowColor="#fff"
-                      className="skills-tooltip"
-                    />
-                  </React.Fragment>
+                    <ul className="app__skills-exp-desc">
+                      {work.desc.split("|").map((point, index) => (
+                        <li key={index} className="p-text" >
+                          {point.trim()}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
                 ))}
               </motion.div>
             </motion.div>

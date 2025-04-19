@@ -34,23 +34,27 @@ const Work = () => {
   };
   return (
     <>
-      <h2 className="head-text">
-        My creative <span>portfolio</span> section
-      </h2>
+      <h2 className="head-text">Projects</h2>
       <div className="app__work-filter">
-        {["UI/UX", "Web App", "Python", "React JS", "All"].map(
-          (item, index) => (
-            <div
-              key={item}
-              onClick={() => handleWorkFilter(item)}
-              className={`app__work-filter-item app__flex p-text ${
-                activeFilter === item ? "item-active" : ""
-              }`}
-            >
-              {item}
-            </div>
-          )
-        )}
+        {[
+          "UI/UX",
+          "Machine Learning",
+          "Python",
+          "React JS",
+          "AWS",
+          "C++",
+          "All",
+        ].map((item) => (
+          <div
+            key={item}
+            onClick={() => handleWorkFilter(item)}
+            className={`app__work-filter-item app__flex p-text ${
+              activeFilter === item ? "item-active" : ""
+            }`}
+          >
+            {item}
+          </div>
+        ))}
       </div>
       <motion.div
         animate={animateCard}
@@ -58,11 +62,19 @@ const Work = () => {
         className="app__work-portfolio"
       >
         {filterWork.map((work) => (
-          <div className="app__work-item app__flex" key={work.title}>
+          <div
+            className="app__work-item app__flex"
+            key={work.title}
+            style={{ minHeight: "392px", justifyContent: "start" }}
+          >
             <div className="app__work-img app__flex">
               <img src={urlFor(work.imgUrl)} alt={work.name} />
               <motion.div
-                whileHover={{ opacity: [0, 1] }}
+                whileHover={{
+                  ...((work.projectLink || work.codeLink) && {
+                    opacity: [0, 1],
+                  }),
+                }}
                 transition={{
                   duration: 0.25,
                   ease: "easeInOut",
@@ -70,26 +82,30 @@ const Work = () => {
                 }}
                 className="app__work-hover app__flex"
               >
-                <a href={work.projectLink} target="_blank" rel="noreferrer">
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.9] }}
-                    transition={{ duration: 0.25 }}
-                    className="app__flex"
-                  >
-                    <AiFillEye />
-                  </motion.div>
-                </a>
-                <a href={work.codeLink} target="_blank" rel="noreferrer">
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.9] }}
-                    transition={{ duration: 0.25 }}
-                    className="app__flex"
-                  >
-                    <AiFillGithub />
-                  </motion.div>
-                </a>
+                {work.projectLink && (
+                  <a href={work.projectLink} target="_blank" rel="noreferrer">
+                    <motion.div
+                      whileInView={{ scale: [0, 1] }}
+                      whileHover={{ scale: [1, 0.9] }}
+                      transition={{ duration: 0.25 }}
+                      className="app__flex"
+                    >
+                      <AiFillEye />
+                    </motion.div>
+                  </a>
+                )}
+                {work.codeLink && (
+                  <a href={work.codeLink} target="_blank" rel="noreferrer">
+                    <motion.div
+                      whileInView={{ scale: [0, 1] }}
+                      whileHover={{ scale: [1, 0.9] }}
+                      transition={{ duration: 0.25 }}
+                      className="app__flex"
+                    >
+                      <AiFillGithub />
+                    </motion.div>
+                  </a>
+                )}
               </motion.div>
             </div>
             <div className="app__work-content app__flex">
@@ -97,7 +113,10 @@ const Work = () => {
               <p className="p_text" style={{ margintTop: 10 }}>
                 {work.description}
               </p>
-              <div className="app__work-tag app__flex">
+              <div
+                className="app__work-tag app__flex"
+                style={{ backgroundColor: "#E5E4E2" }}
+              >
                 <p className="p-text">{work.tags[0]}</p>
               </div>
             </div>

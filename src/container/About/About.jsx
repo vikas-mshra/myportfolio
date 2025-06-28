@@ -6,8 +6,8 @@ const About = () => {
   const timelineData = [
     {
       date: "Jun 2023 - Present",
-      title: "Frontend Developer",
-      desc: "Skills: ReactJS, JavaScript, Tailwind CSS, HTML, Redux",
+      title: "Full Stack Developer",
+      desc: "Skills: ReactJS, JavaScript, Tailwind CSS, HTML, Redux., Python, MSSQL, Flask",
 
       accentColor: "#41516C",
     },
@@ -20,7 +20,7 @@ const About = () => {
     {
       date: "Jun 2019 - Oct 2022",
       title: "Backend Developer",
-      desc: "Skills: Java, Spring Boot, Postgres, Eureka, Hibernate",
+      desc: "Skills: Java, Spring Boot, Postgres, Eureka, Hibernate, RabbitMQ, Neo4j, Groovy",
 
       accentColor: "#FBCA3E",
     },

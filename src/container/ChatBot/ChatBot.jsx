@@ -8,7 +8,7 @@ const MAX_MESSAGE_LENGTH = 50;
 const MIN_MESSAGE_LENGTH = 1;
 
 // Rate limiting constants
-const MAX_REQUESTS_PER_DAY = 5;
+const MAX_REQUESTS_PER_DAY = 8;
 const RATE_LIMIT_KEY = "chatbot_rate_limit";
 const ENCRYPTION_KEY = "vbot_2024_secure_key_xyz789";
 
@@ -206,7 +206,7 @@ const ChatBot = () => {
     if (!rateLimit.allowed) {
       const rateLimitMessage = {
         id: Date.now(),
-        text: `You've reached the daily limit of ${MAX_REQUESTS_PER_DAY} messages. Please try again tomorrow.`,
+        text: `You've reached the daily limit of ${MAX_REQUESTS_PER_DAY} messages. Please try again tomorrow. You can reach out to me directly at vikas.mishra0796@gmail.com for anything else!`,
         sender: "bot",
         role: "assistant",
         timestamp: new Date(),

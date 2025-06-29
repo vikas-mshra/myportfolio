@@ -12,20 +12,43 @@ const MAX_REQUESTS_PER_DAY = 5;
 const RATE_LIMIT_KEY = "chatbot_rate_limit";
 const ENCRYPTION_KEY = "vbot_2024_secure_key_xyz789";
 
+// Key encryption function
+const encryptKey = (key) => {
+  try {
+    // Simple XOR encryption for the key
+    let encrypted = '';
+    for (let i = 0; i < key.length; i++) {
+      const charCode = key.charCodeAt(i) ^ ENCRYPTION_KEY.charCodeAt(i % ENCRYPTION_KEY.length);
+      encrypted += String.fromCharCode(charCode);
+    }
+    return btoa(encrypted);
+  } catch (error) {
+    console.error('Key encryption error:', error);
+    return key; // Fallback to original key
+  }
+};
+
+// Get encrypted localStorage key
+const getEncryptedKey = () => {
+  return encryptKey(RATE_LIMIT_KEY);
+};
+
 // Simple encryption/decryption functions
 const encryptData = (data) => {
   try {
     const jsonString = JSON.stringify(data);
     const encoded = btoa(jsonString);
     // Simple XOR encryption with the key
-    let encrypted = '';
+    let encrypted = "";
     for (let i = 0; i < encoded.length; i++) {
-      const charCode = encoded.charCodeAt(i) ^ ENCRYPTION_KEY.charCodeAt(i % ENCRYPTION_KEY.length);
+      const charCode =
+        encoded.charCodeAt(i) ^
+        ENCRYPTION_KEY.charCodeAt(i % ENCRYPTION_KEY.length);
       encrypted += String.fromCharCode(charCode);
     }
     return btoa(encrypted);
   } catch (error) {
-    console.error('Encryption error:', error);
+    console.error("Encryption error:", error);
     return null;
   }
 };
@@ -34,15 +57,17 @@ const decryptData = (encryptedData) => {
   try {
     // Simple XOR decryption with the key
     const decoded = atob(encryptedData);
-    let decrypted = '';
+    let decrypted = "";
     for (let i = 0; i < decoded.length; i++) {
-      const charCode = decoded.charCodeAt(i) ^ ENCRYPTION_KEY.charCodeAt(i % ENCRYPTION_KEY.length);
+      const charCode =
+        decoded.charCodeAt(i) ^
+        ENCRYPTION_KEY.charCodeAt(i % ENCRYPTION_KEY.length);
       decrypted += String.fromCharCode(charCode);
     }
     const jsonString = atob(decrypted);
     return JSON.parse(jsonString);
   } catch (error) {
-    console.error('Decryption error:', error);
+    console.error("Decryption error:", error);
     return null;
   }
 };
@@ -50,26 +75,27 @@ const decryptData = (encryptedData) => {
 // Rate limiting utilities
 const getRateLimitData = () => {
   try {
-    const encryptedData = localStorage.getItem(RATE_LIMIT_KEY);
+    const encryptedKey = getEncryptedKey();
+    const encryptedData = localStorage.getItem(encryptedKey);
     if (!encryptedData) return null;
-    
+
     const data = decryptData(encryptedData);
     if (!data) return null;
-    
+
     // Check if 24 hours have passed since last reset
     const now = new Date().getTime();
     const lastReset = data.lastReset || 0;
     const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-    
+
     if (now - lastReset >= twentyFourHours) {
       // Reset the counter
-      localStorage.removeItem(RATE_LIMIT_KEY);
+      localStorage.removeItem(encryptedKey);
       return null;
     }
-    
+
     return data;
   } catch (error) {
-    console.error('Error reading rate limit data:', error);
+    console.error("Error reading rate limit data:", error);
     return null;
   }
 };
@@ -80,15 +106,16 @@ const updateRateLimitData = (requestCount) => {
     const data = {
       requestCount,
       lastReset: now,
-      lastRequest: now
+      lastRequest: now,
     };
-    
+
     const encryptedData = encryptData(data);
     if (encryptedData) {
-      localStorage.setItem(RATE_LIMIT_KEY, encryptedData);
+      const encryptedKey = getEncryptedKey();
+      localStorage.setItem(encryptedKey, encryptedData);
     }
   } catch (error) {
-    console.error('Error updating rate limit data:', error);
+    console.error("Error updating rate limit data:", error);
   }
 };
 
@@ -99,18 +126,18 @@ const checkRateLimit = () => {
     updateRateLimitData(1);
     return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - 1 };
   }
-  
+
   const remaining = MAX_REQUESTS_PER_DAY - data.requestCount;
   return { allowed: remaining > 0, remaining: Math.max(0, remaining) };
 };
 
 // The full system prompt is now stored in your Netlify Function, not here.
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
+document.addEventListener("contextmenu", (e) => e.preventDefault());
+document.addEventListener("keydown", (e) => {
   if (
-    e.key === 'F12' ||
-    (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) ||
-    (e.ctrlKey && e.key === 'U')
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+    (e.ctrlKey && e.key === "U")
   ) {
     e.preventDefault();
   }
@@ -130,7 +157,10 @@ const ChatBot = () => {
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [rateLimitInfo, setRateLimitInfo] = useState({ allowed: true, remaining: MAX_REQUESTS_PER_DAY });
+  const [rateLimitInfo, setRateLimitInfo] = useState({
+    allowed: true,
+    remaining: MAX_REQUESTS_PER_DAY,
+  });
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -181,7 +211,7 @@ const ChatBot = () => {
         role: "assistant",
         timestamp: new Date(),
       };
-      setMessages(prev => [...prev, rateLimitMessage]);
+      setMessages((prev) => [...prev, rateLimitMessage]);
       setRateLimitInfo(rateLimit);
       return;
     }
@@ -206,37 +236,24 @@ const ChatBot = () => {
     const currentData = getRateLimitData();
     const newRequestCount = currentData ? currentData.requestCount + 1 : 1;
     updateRateLimitData(newRequestCount);
-    
+
     // Update rate limit info in state
-    const newRateLimit = { allowed: true, remaining: MAX_REQUESTS_PER_DAY - newRequestCount };
+    const newRateLimit = {
+      allowed: true,
+      remaining: MAX_REQUESTS_PER_DAY - newRequestCount,
+    };
     setRateLimitInfo(newRateLimit);
 
     try {
-      // ----------------- MODIFICATION START -----------------
-      console.log("Making API call to Netlify Function...");
-
-      // Prepare the messages payload for the backend. We only need role and content.
-      const apiPayload = newMessages.map(({ role, text }) => ({
-        role,
-        content: text,
-      }));
-
       // Call your new Netlify Function endpoint
-      const response = await axios.post(
-        "/.netlify/functions/chatbot",
-        {
-          // Pass the conversation history to your function
-          messages: apiPayload,
-        }
-      );
-      // The API key is NOT included here. It's handled securely in the backend.
-      // ------------------ MODIFICATION END ------------------
-
-      console.log("API Response from Netlify Function:", response.data);
+      const response = await axios.post("/.netlify/functions/chatbot", {
+        // Pass the conversation history to your function
+        userMessage: sanitizedMessage,
+      });
 
       const botMessage = {
         id: Date.now() + 1,
-        text: response.data.choices[0].message.content,
+        text: response.data.reply,
         sender: "bot",
         role: "assistant",
         timestamp: new Date(),
@@ -326,7 +343,11 @@ const ChatBot = () => {
         <div className="chat-header">
           <h3>V-Bot</h3>
           <div className="rate-limit-info">
-            <span className={`remaining-requests ${rateLimitInfo.remaining < 5 ? 'warning' : ''}`}>
+            <span
+              className={`remaining-requests ${
+                rateLimitInfo.remaining < 5 ? "warning" : ""
+              }`}
+            >
               {rateLimitInfo.remaining} requests left today
             </span>
           </div>
@@ -378,7 +399,11 @@ const ChatBot = () => {
               value={inputMessage}
               onChange={handleInputChange}
               onKeyPress={handleKeyPress}
-              placeholder={rateLimitInfo.allowed ? "Type your message..." : "Daily limit reached. Try again tomorrow."}
+              placeholder={
+                rateLimitInfo.allowed
+                  ? "Type your message..."
+                  : "Daily limit reached. Try again tomorrow."
+              }
               disabled={isLoading || !rateLimitInfo.allowed}
               rows="1"
               maxLength={MAX_MESSAGE_LENGTH}

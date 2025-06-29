@@ -1,0 +1,11 @@
+# netlify.toml
+
+[build]
+# This is the command to build your React site for production
+command = "npm run build"
+
+# This is the directory your build command creates
+publish = "build"
+
+# This is the directory where your serverless functions are
+functions = "netlify/functions"

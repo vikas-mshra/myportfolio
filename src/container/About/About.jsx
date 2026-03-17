@@ -5,10 +5,9 @@ import "./About.scss";
 const About = () => {
   const timelineData = [
     {
-      date: "Jun 2023 - Present",
+      date: "May 2024 - Present",
       title: "Full Stack Developer",
-      desc: "Skills: ReactJS, JavaScript, Tailwind CSS, HTML, Redux., Python, MSSQL, Flask",
-
+      desc: "Skills: ReactJS, TypeScript, Tailwind CSS, Python, MSSQL, Flask, AWS, Docker, MSSQL",
       accentColor: "#41516C",
     },
     {
@@ -20,8 +19,7 @@ const About = () => {
     {
       date: "Jun 2019 - Oct 2022",
       title: "Backend Developer",
-      desc: "Skills: Java, Spring Boot, Postgres, Eureka, Hibernate, RabbitMQ, Neo4j, Groovy",
-
+      desc: "Skills: Java, Spring Boot, Postgres, Eureka, Hibernate, RabbitMQ, Neo4j, Groovy, PostgreSQL",
       accentColor: "#FBCA3E",
     },
     {
@@ -47,16 +45,20 @@ const About = () => {
   return (
     <>
       <h3 className="summary-text">
-        Hello, I'm Vikas! 👋 A recent Master of Computer Science graduate (Dec
-        2024) from California State University, Sacramento, where I maintained a
-        3.85 GPA. By day, I'm a frontend developer passionate about optimizing
-        React applications—like improving performance by 40% using React
-        Virtualized and TypeScript. By night, I geek out over training
-        generative AI models (Stable Diffusion, Llama-3) and solving complex
-        problems, such as slashing memory usage by 44% in a parallel algorithm.
-        When I'm not coding, you'll find me playing badminton, experimenting
-        with pour-over coffee, or diving into the latest ML research. Let's
-        connect and build something impactful!
+        Hello, I'm Vikas! 👋 I'm a full stack developer with a strong backend
+        foundation and expertise in frontend and AI-driven systems. I currently
+        work at the Office of Water Programs, where I lead a team of 3
+        developers and build scalable web applications using React, TypeScript,
+        Python, MSSQL, and modern tooling. I started my career as a backend
+        developer at Tata Consultancy Services, working on high-volume,
+        event-driven systems with Java and Spring Boot. Over time, I expanded
+        into frontend development, where I've focused on performance, usability,
+        and building reusable components. I enjoy working on problems that
+        involve system design, performance optimization, and data-heavy
+        applications. Recently, I've also been exploring LLMs and multi-agent
+        systems, building projects around AI-powered workflows and automation.
+        Overall, I like building systems that are efficient, practical, and
+        actually useful for the people using them.
       </h3>
       <div className="timeline-container">
         <ul className="timeline">
@@ -76,5 +78,5 @@ const About = () => {
 export default AppWrap(
   MotionWrap(About, "app__about"),
   "about",
-  "app__whitebg"
+  "app__whitebg",
 );

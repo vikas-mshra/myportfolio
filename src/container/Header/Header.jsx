@@ -32,8 +32,10 @@ const Header = () => (
         </div>
 
         <div className="tag-cmp app__flex">
-          <p className="p-text">Graduate student</p>
-          <p className="p-text">Web Developer</p>
+          <p className="p-text">Full Stack Developer</p>
+          <p className="p-text">
+            ReactJS | Python | Java | MSSQL | AWS | Docker
+          </p>
         </div>
       </div>
     </motion.div>
@@ -66,4 +68,4 @@ const Header = () => (
     </motion.div>
   </div>
 );
-export default AppWrap(Header, 'home');
+export default AppWrap(Header, "home");

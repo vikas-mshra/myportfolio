@@ -116,6 +116,8 @@ const IntroVideo = () => {
           preload="metadata"
           playsInline
           controls={false}
+          width={620}
+          height={827}
           aria-label={SITE.media.videoLabel}
         >
           <source src={SITE.media.videoSrc} type="video/mp4" />
@@ -132,7 +134,9 @@ const IntroVideo = () => {
           <span className="intro-video__control">{isPlaying ? "Pause" : "Play"}</span>
         </div>
       </div>
-      <p className="intro-video__caption">10-second introduction</p>
+      <p className="intro-video__caption">
+        {SITE.media.videoLabel}. Tap or press Enter to play or pause.
+      </p>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const Contact = () => {
           description="For product engineering, integrations, or technical collaboration, send a message or schedule a short call."
         />
 
-        <div className="contact__actions">
+        <address className="contact__actions">
           <ContactAction
             label="Email"
             description={SITE.email}
@@ -47,7 +47,7 @@ const Contact = () => {
             href={SITE.resume.href}
             download={SITE.resume.downloadName}
           />
-        </div>
+        </address>
 
         <div className="contact__form-wrap">
           <h3 className="contact__form-title">Send a message</h3>

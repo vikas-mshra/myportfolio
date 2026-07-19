@@ -2,6 +2,8 @@
 
 Concise single-page portfolio built with Create React App, React 18, and SCSS. Deployed on Netlify.
 
+The production build prerenders the homepage into static HTML (`scripts/prerender.mjs` using `react-dom/server` + esbuild) so search engines and link previews can read the portfolio content without running JavaScript. The client then hydrates for theme toggle, video controls, navigation, and the contact form.
+
 ## Local development
 
 ```bash
@@ -18,7 +20,23 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build
 ```
 
-Output is written to `build/`.
+This runs `react-scripts build`, then `node scripts/prerender.mjs` (postbuild) to inject the rendered page into `build/index.html`. Output is written to `build/`.
+
+Verify crawler-visible content:
+
+```bash
+grep -o "Vikas Mishra" build/index.html | head
+grep -E "Stacksync|LinkedIn|application/ld\\+json" build/index.html | head
+```
+
+Prerender does not need a headless browser — it runs in Node during `postbuild`, so Netlify and local builds stay reliable.
+
+## Canonical URL and crawl files
+
+- Site: [https://vikasmshra.com/](https://vikasmshra.com/)
+- Robots: [https://vikasmshra.com/robots.txt](https://vikasmshra.com/robots.txt)
+- Sitemap: [https://vikasmshra.com/sitemap.xml](https://vikasmshra.com/sitemap.xml)
+- Social preview image: `/og-image.png`
 
 ## Contact form environment variables
 
@@ -60,7 +78,7 @@ Place the PDF at `public/resources/VikasMishraResume.pdf`. Label and download fi
 
 ## Theme
 
-Dark mode is the default. The header toggle saves the choice to `localStorage` under `portfolio-theme`.
+Dark mode is the default. An inline boot script in `public/index.html` applies the saved preference before paint. The header toggle saves the choice to `localStorage` under `portfolio-theme`.
 
 ## Content edits
 
@@ -71,3 +89,5 @@ Most copy lives in `src/data/`:
 - `experience.js` — roles
 - `capabilities.js` — capability groups
 - `about.js` — short about copy
+
+SEO title, description, Open Graph/Twitter tags, and JSON-LD live in `public/index.html`.

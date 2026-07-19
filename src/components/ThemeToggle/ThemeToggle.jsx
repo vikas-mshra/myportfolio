@@ -17,8 +17,9 @@ const ThemeToggle = () => {
       onClick={toggleTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={!isDark}
+      suppressHydrationWarning
     >
-      <span className="theme-toggle__icon" aria-hidden="true">
+      <span className="theme-toggle__icon" aria-hidden="true" suppressHydrationWarning>
         {isDark ? (
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.75" />
@@ -40,7 +41,9 @@ const ThemeToggle = () => {
           </svg>
         )}
       </span>
-      <span className="theme-toggle__label">{isDark ? "Light" : "Dark"}</span>
+      <span className="theme-toggle__label" suppressHydrationWarning>
+        {isDark ? "Light" : "Dark"}
+      </span>
     </button>
   );
 };

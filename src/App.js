@@ -18,8 +18,11 @@ const App = () => {
   return (
     <ThemeProvider>
       <div className="site">
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
         <Header />
-        <main className="site__main">
+        <main className="site__main" id="main">
           <Hero />
           <SelectedWork />
           <Experience />

@@ -11,6 +11,7 @@ export const EXPERIENCE = [
     subtitle: "Y Combinator, 2024",
     title: "Full-Stack Engineer",
     dates: "May 2026 – Present",
+    dateTime: "2026-05",
     points: [
       "Own customer integrations from technical discovery through production deployment, translating ERP, CRM, and warehouse requirements into scalable synchronization workflows.",
       "Engineer connector pipelines with large-scale backfills, webhooks, polling, pagination, batching, retries, and error recovery to maintain reliable near-real-time consistency across business systems.",
@@ -22,6 +23,7 @@ export const EXPERIENCE = [
     company: "Office of Water Programs",
     title: "Full-Stack Developer",
     dates: "May 2024 – May 2026",
+    dateTime: "2024-05",
     points: [
       "Led development of a stormwater analytics platform using React, TypeScript, FastAPI, and Pandas, turning complex environmental datasets into interactive visualizations for research engineers.",
       "Reduced the initial frontend bundle by approximately 50–60% by migrating to Vite, implementing route-level code splitting, and introducing lazy loading.",
@@ -33,6 +35,7 @@ export const EXPERIENCE = [
     company: "Tata Consultancy Services",
     title: "Backend Developer",
     dates: "June 2019 – October 2022",
+    dateTime: "2019-06",
     points: [
       "Designed Java and Spring Boot services with RabbitMQ to process more than 10,000 SAP IDocs daily, supporting reliable enterprise-scale data ingestion.",
       "Built a configurable self-healing rules engine that detected recurring failures and automatically triggered recovery scripts, eliminating manual intervention for known error patterns.",

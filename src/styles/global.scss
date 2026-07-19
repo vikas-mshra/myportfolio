@@ -80,6 +80,31 @@ textarea {
   flex: 1;
 }
 
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 1000;
+  transform: translateY(-120%);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: #08110f;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0.75rem);
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+[data-theme="light"] .skip-link {
+  color: #ffffff;
+}
+
 .container {
   width: min(100% - 2rem, var(--content-max));
   margin-inline: auto;

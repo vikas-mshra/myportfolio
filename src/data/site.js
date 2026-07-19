@@ -7,7 +7,7 @@
 export const SITE = {
   name: "Vikas Mishra",
   monogram: "VM",
-  role: "Fullstack Developer",
+  role: "Forward Deployed & Full-Stack Engineer",
   title:
     "Software engineer building reliable products, integrations, and data-intensive systems.",
   support:
@@ -29,7 +29,7 @@ export const SITE = {
     videoLabel: "A short personal introduction from Vikas Mishra",
   },
   resume: {
-    label: "Download résumé",
+    label: "Download résumé (PDF)",
     href: `${process.env.PUBLIC_URL}/resources/VikasMishraResume.pdf`,
     downloadName: "VikasMishraResume.pdf",
   },

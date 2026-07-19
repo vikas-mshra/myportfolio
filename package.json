@@ -12,6 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "node scripts/prerender.mjs",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -32,6 +33,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "esbuild": "^0.28.1"
   }
 }

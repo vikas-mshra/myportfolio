@@ -9,7 +9,10 @@ import React, {
 
 /**
  * Purpose: Provide dark/light theme state with localStorage persistence.
- * Special Conditions: Defaults to dark when no saved preference exists.
+ * Special Conditions:
+ *   - Defaults to dark when no saved preference exists.
+ *   - Never reads window/localStorage when window is unavailable (prerender safety).
+ *   - Prefers data-theme already set by the inline boot script (avoids FOUC mismatch).
  * Context: Wraps the app; ThemeToggle and metadata consumers use this.
  */
 
@@ -17,14 +20,24 @@ const STORAGE_KEY = "portfolio-theme";
 const ThemeContext = createContext(null);
 
 function getInitialTheme() {
+  if (typeof window === "undefined") {
+    return "dark";
+  }
+
   try {
+    const fromDom = document.documentElement.getAttribute("data-theme");
+    if (fromDom === "light" || fromDom === "dark") {
+      return fromDom;
+    }
+
     const saved = window.localStorage.getItem(STORAGE_KEY);
     if (saved === "light" || saved === "dark") {
       return saved;
     }
   } catch {
-    // Ignore storage access errors (private mode, etc.)
+    // Ignore storage access errors (private mode, prerender quirks)
   }
+
   return "dark";
 }
 

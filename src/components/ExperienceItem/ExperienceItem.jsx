@@ -3,6 +3,7 @@ import "./ExperienceItem.scss";
 
 /**
  * Purpose: One experience role in the compact timeline.
+ * Special Conditions: Uses <time> when role.dateTime is provided for crawlers.
  */
 const ExperienceItem = ({ role }) => {
   return (
@@ -14,7 +15,13 @@ const ExperienceItem = ({ role }) => {
             <span className="experience-item__subtitle"> · {role.subtitle}</span>
           ) : null}
         </h3>
-        <p className="experience-item__dates">{role.dates}</p>
+        <p className="experience-item__dates">
+          {role.dateTime ? (
+            <time dateTime={role.dateTime}>{role.dates}</time>
+          ) : (
+            role.dates
+          )}
+        </p>
       </div>
       <p className="experience-item__title">{role.title}</p>
       <ul className="experience-item__points">

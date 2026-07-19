@@ -64,7 +64,7 @@ const Hero = () => {
                 href={SITE.resume.href}
                 download={SITE.resume.downloadName}
               >
-                Résumé
+                Download résumé (PDF)
               </a>
             </li>
           </ul>

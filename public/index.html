@@ -8,29 +8,46 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0e1114" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://vikasmshra.com/" />
     <meta
       name="description"
-      content="Vikas Mishra — Fullstack Developer building reliable products, integrations, and data-intensive systems."
+      content="Software engineer building production integrations, agentic workflows, and data-intensive applications across React, Spring Boot, Python, and enterprise platforms."
     />
 
-    <title>Vikas Mishra | Fullstack Developer</title>
+    <title>Vikas Mishra | Forward Deployed &amp; Full-Stack Engineer</title>
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Vikas Mishra | Fullstack Developer" />
+    <meta property="og:site_name" content="Vikas Mishra" />
+    <meta
+      property="og:title"
+      content="Vikas Mishra | Forward Deployed &amp; Full-Stack Engineer"
+    />
     <meta
       property="og:description"
-      content="Fullstack Developer building reliable products, integrations, and data-intensive systems."
+      content="Software engineer building production integrations, agentic workflows, and data-intensive applications across React, Spring Boot, Python, and enterprise platforms."
     />
-    <meta property="og:image" content="https://www.vikasmshra.com/profile.png" />
-    <meta property="og:url" content="https://www.vikasmshra.com/" />
+    <meta property="og:url" content="https://vikasmshra.com/" />
+    <meta property="og:image" content="https://vikasmshra.com/og-image.png" />
+    <meta
+      property="og:image:alt"
+      content="Vikas Mishra — Forward Deployed and Full-Stack Engineer"
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Vikas Mishra | Fullstack Developer" />
+    <meta
+      name="twitter:title"
+      content="Vikas Mishra | Forward Deployed &amp; Full-Stack Engineer"
+    />
     <meta
       name="twitter:description"
-      content="Fullstack Developer building reliable products, integrations, and data-intensive systems."
+      content="Software engineer building production integrations, agentic workflows, and data-intensive applications across React, Spring Boot, Python, and enterprise platforms."
     />
-    <meta name="twitter:image" content="https://www.vikasmshra.com/profile.png" />
+    <meta name="twitter:image" content="https://vikasmshra.com/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Vikas Mishra — Forward Deployed and Full-Stack Engineer"
+    />
 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
@@ -41,9 +58,97 @@
       href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap"
       rel="stylesheet"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Vikas Mishra",
+            "url": "https://vikasmshra.com/",
+            "jobTitle": "Forward Deployed & Full-Stack Engineer",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "San Francisco",
+              "addressRegion": "CA",
+              "addressCountry": "US"
+            },
+            "sameAs": [
+              "https://linkedin.com/in/vikas-mshra",
+              "https://github.com/vikas-mshra"
+            ],
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "California State University, Sacramento"
+            },
+            "knowsAbout": [
+              "Full-stack engineering",
+              "Production integrations",
+              "Agentic workflows",
+              "React",
+              "TypeScript",
+              "Spring Boot",
+              "Python",
+              "FastAPI",
+              "Data synchronization",
+              "PostgreSQL"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "name": "Vikas Mishra",
+            "url": "https://vikasmshra.com/",
+            "description": "Software engineer building production integrations, agentic workflows, and data-intensive applications across React, Spring Boot, Python, and enterprise platforms.",
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      (function () {
+        try {
+          var key = "portfolio-theme";
+          var saved = localStorage.getItem(key);
+          var theme = saved === "light" || saved === "dark" ? saved : "dark";
+          document.documentElement.setAttribute("data-theme", theme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) {
+            meta.setAttribute(
+              "content",
+              theme === "dark" ? "#0e1114" : "#f4f6f8"
+            );
+          }
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div class="noscript-fallback">
+        <h1>Vikas Mishra</h1>
+        <p>Forward Deployed &amp; Full-Stack Engineer</p>
+        <p>
+          Software engineer building production integrations, agentic workflows,
+          and data-intensive applications across React, Spring Boot, Python, and
+          enterprise platforms.
+        </p>
+        <p>
+          <a href="mailto:vikas.mishra0796@gmail.com">Email</a>
+          ·
+          <a href="https://linkedin.com/in/vikas-mshra">LinkedIn</a>
+          ·
+          <a href="https://github.com/vikas-mshra">GitHub</a>
+          ·
+          <a href="https://cal.com/vikas-mshra/15min">Schedule a call</a>
+          ·
+          <a href="%PUBLIC_URL%/resources/VikasMishraResume.pdf">Download résumé (PDF)</a>
+        </p>
+      </div>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>

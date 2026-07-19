@@ -58,11 +58,23 @@ export async function submitContactMessage(payload) {
     }
   }
 
+  const rawError =
+    (lastError && (lastError.text || lastError.message)) ||
+    "Message could not be sent. Please try again or email directly.";
+
+  // EmailJS Gmail OAuth tokens expire; the site owner must reconnect in EmailJS.
+  if (/invalid grant|reconnect your gmail/i.test(String(rawError))) {
+    return {
+      ok: false,
+      error:
+        "Email delivery is temporarily unavailable. Please email me directly or schedule a call.",
+      mailtoSuggested: true,
+    };
+  }
+
   return {
     ok: false,
-    error:
-      (lastError && lastError.text) ||
-      "Message could not be sent. Please try again or email directly.",
+    error: rawError,
   };
 }
 

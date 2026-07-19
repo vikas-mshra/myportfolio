@@ -32,6 +32,17 @@ REACT_APP_EMAIL_PUBLIC_ID=
 
 If these are missing, the form shows an error and offers a `mailto:` fallback. It does **not** fake a success response.
 
+### “Gmail_API: Invalid grant” / reconnect Gmail
+
+Your EmailJS service uses Gmail OAuth. When Google revokes or expires that grant, submissions fail until you reconnect:
+
+1. Open [EmailJS Email Services](https://dashboard.emailjs.com/admin)
+2. Open your Gmail service
+3. Click **Reconnect** / re-authorize Gmail
+4. Send a test from the EmailJS dashboard, then retry the site form
+
+No frontend code or env-var changes are required for that fix.
+
 ## Replacing the hero video and poster
 
 1. Replace files in **`public/resources/`** (not `build/resources/` — that folder is overwritten on each build).

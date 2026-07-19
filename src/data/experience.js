@@ -8,6 +8,7 @@ export const EXPERIENCE = [
   {
     id: "stacksync",
     company: "Stacksync",
+    subtitle: "Y Combinator, 2024",
     title: "Full-Stack Engineer",
     dates: "May 2026 – Present",
     points: [

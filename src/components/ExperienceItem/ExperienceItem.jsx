@@ -8,7 +8,12 @@ const ExperienceItem = ({ role }) => {
   return (
     <article className="experience-item">
       <div className="experience-item__meta">
-        <h3 className="experience-item__company">{role.company}</h3>
+        <h3 className="experience-item__company">
+          {role.company}
+          {role.subtitle ? (
+            <span className="experience-item__subtitle"> · {role.subtitle}</span>
+          ) : null}
+        </h3>
         <p className="experience-item__dates">{role.dates}</p>
       </div>
       <p className="experience-item__title">{role.title}</p>

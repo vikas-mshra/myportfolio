@@ -9,7 +9,7 @@ export const CASE_STUDIES = [
     id: "stacksync",
     title: "Stacksync — Integration and Agentic Workflows",
     context:
-      "Customers needed reliable sync between ERP, CRM, and warehouse systems, plus natural-language workflows across many connectors.",
+      "At Stacksync, a Y Combinator–backed startup (2024), customers needed reliable sync between ERP, CRM, and warehouse systems, plus natural-language workflows across many connectors.",
     owned:
       "Customer integrations from discovery through production, including connector pipelines and agentic workflow features.",
     decision:

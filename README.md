@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Vikas Mishra — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Concise single-page portfolio built with Create React App, React 18, and SCSS. Deployed on Netlify.
 
-## Available Scripts
+The production build prerenders the homepage into static HTML (`scripts/prerender.mjs` using `react-dom/server` + esbuild) so search engines and link previews can read the portfolio content without running JavaScript. The client then hydrates for theme toggle, video controls, navigation, and the contact form.
 
-In the project directory, you can run:
+## Local development
 
-### `npm start`
+```bash
+cd frontend_react
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Production build
 
-### `npm test`
+```bash
+npm run build
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This runs `react-scripts build`, then `node scripts/prerender.mjs` (postbuild) to inject the rendered page into `build/index.html`. Output is written to `build/`.
 
-### `npm run build`
+Verify crawler-visible content:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+grep -o "Vikas Mishra" build/index.html | head
+grep -E "Stacksync|LinkedIn|application/ld\\+json" build/index.html | head
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Prerender does not need a headless browser — it runs in Node during `postbuild`, so Netlify and local builds stay reliable.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Canonical URL and crawl files
 
-### `npm run eject`
+- Site: [https://vikasmshra.com/](https://vikasmshra.com/)
+- Robots: [https://vikasmshra.com/robots.txt](https://vikasmshra.com/robots.txt)
+- Sitemap: [https://vikasmshra.com/sitemap.xml](https://vikasmshra.com/sitemap.xml)
+- Social preview image: `/og-image.png`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contact form environment variables
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Copy `.env.example` to `.env` (or set the same keys in Netlify):
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+REACT_APP_EMAIL_SERVICE_ID=
+REACT_APP_EMAIL_TEMPLATE_ID=
+REACT_APP_EMAIL_PUBLIC_ID=
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+If these are missing, the form shows an error and offers a `mailto:` fallback. It does **not** fake a success response.
 
-## Learn More
+### “Gmail_API: Invalid grant” / reconnect Gmail
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Your EmailJS service uses Gmail OAuth. When Google revokes or expires that grant, submissions fail until you reconnect:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Open [EmailJS Email Services](https://dashboard.emailjs.com/admin)
+2. Open your Gmail service
+3. Click **Reconnect** / re-authorize Gmail
+4. Send a test from the EmailJS dashboard, then retry the site form
 
-### Code Splitting
+No frontend code or env-var changes are required for that fix.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Replacing the hero video and poster
 
-### Analyzing the Bundle Size
+1. Replace files in **`public/resources/`** (not `build/resources/` — that folder is overwritten on each build).
+2. Current filenames:
+   - Video: `public/resources/intro-video.mp4`
+   - Poster: `public/resources/intro-poster.png`
+3. Paths are configured in `src/data/site.js` under `SITE.media` if you rename files.
+4. Hard-refresh the browser (Cmd+Shift+R) so cached media is cleared.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Keep the video small (a few MB). The player uses `preload="metadata"` and never autoplays.
 
-### Making a Progressive Web App
+## Résumé download
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Place the PDF at `public/resources/VikasMishraResume.pdf`. Label and download filename are set in `src/data/site.js` under `SITE.resume`.
 
-### Advanced Configuration
+## Theme
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Dark mode is the default. An inline boot script in `public/index.html` applies the saved preference before paint. The header toggle saves the choice to `localStorage` under `portfolio-theme`.
 
-### Deployment
+## Content edits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Most copy lives in `src/data/`:
 
-### `npm run build` fails to minify
+- `site.js` — name, role, links, media, résumé
+- `caseStudies.js` — selected work
+- `experience.js` — roles
+- `capabilities.js` — capability groups
+- `about.js` — short about copy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+SEO title, description, Open Graph/Twitter tags, and JSON-LD live in `public/index.html`.

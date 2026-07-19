@@ -1,0 +1,57 @@
+.experience-item {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.experience-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.experience-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+
+.experience-item__company {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 620;
+}
+
+.experience-item__subtitle {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.experience-item__dates {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.experience-item__title {
+  margin: 0.35rem 0 0.7rem;
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  font-weight: 540;
+}
+
+.experience-item__points {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--color-text);
+}
+
+.experience-item__points li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.experience-item__points li:last-child {
+  margin-bottom: 0;
+}

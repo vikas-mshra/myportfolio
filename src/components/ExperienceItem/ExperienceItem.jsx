@@ -1,0 +1,36 @@
+import React from "react";
+import "./ExperienceItem.scss";
+
+/**
+ * Purpose: One experience role in the compact timeline.
+ * Special Conditions: Uses <time> when role.dateTime is provided for crawlers.
+ */
+const ExperienceItem = ({ role }) => {
+  return (
+    <article className="experience-item">
+      <div className="experience-item__meta">
+        <h3 className="experience-item__company">
+          {role.company}
+          {role.subtitle ? (
+            <span className="experience-item__subtitle"> · {role.subtitle}</span>
+          ) : null}
+        </h3>
+        <p className="experience-item__dates">
+          {role.dateTime ? (
+            <time dateTime={role.dateTime}>{role.dates}</time>
+          ) : (
+            role.dates
+          )}
+        </p>
+      </div>
+      <p className="experience-item__title">{role.title}</p>
+      <ul className="experience-item__points">
+        {role.points.map((point) => (
+          <li key={point}>{point}</li>
+        ))}
+      </ul>
+    </article>
+  );
+};
+
+export default ExperienceItem;

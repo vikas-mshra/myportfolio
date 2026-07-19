@@ -1,0 +1,18 @@
+.capabilities__grid {
+  display: grid;
+  gap: 0.5rem 2rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .capabilities__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .capabilities__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

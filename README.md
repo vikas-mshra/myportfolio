@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Vikas Mishra — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Concise single-page portfolio built with Create React App, React 18, and SCSS. Deployed on Netlify.
 
-## Available Scripts
+## Local development
 
-In the project directory, you can run:
+```bash
+cd frontend_react
+npm install
+npm start
+```
 
-### `npm start`
+Open [http://localhost:3000](http://localhost:3000).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Production build
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm run build
+```
 
-### `npm test`
+Output is written to `build/`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Contact form environment variables
 
-### `npm run build`
+Copy `.env.example` to `.env` (or set the same keys in Netlify):
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+REACT_APP_EMAIL_SERVICE_ID=
+REACT_APP_EMAIL_TEMPLATE_ID=
+REACT_APP_EMAIL_PUBLIC_ID=
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If these are missing, the form shows an error and offers a `mailto:` fallback. It does **not** fake a success response.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Replacing the hero video and poster
 
-### `npm run eject`
+1. Replace files in **`public/resources/`** (not `build/resources/` — that folder is overwritten on each build).
+2. Current filenames:
+   - Video: `public/resources/intro-video.mp4`
+   - Poster: `public/resources/intro-poster.png`
+3. Paths are configured in `src/data/site.js` under `SITE.media` if you rename files.
+4. Hard-refresh the browser (Cmd+Shift+R) so cached media is cleared.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Keep the video small (a few MB). The player uses `preload="metadata"` and never autoplays.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Résumé download
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Place the PDF at `public/resources/VikasMishraResume.pdf`. Label and download filename are set in `src/data/site.js` under `SITE.resume`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Theme
 
-## Learn More
+Dark mode is the default. The header toggle saves the choice to `localStorage` under `portfolio-theme`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Content edits
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Most copy lives in `src/data/`:
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `site.js` — name, role, links, media, résumé
+- `caseStudies.js` — selected work
+- `experience.js` — roles
+- `capabilities.js` — capability groups
+- `about.js` — short about copy

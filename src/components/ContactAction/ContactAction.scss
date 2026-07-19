@@ -1,0 +1,32 @@
+.contact-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-elevated);
+  text-decoration: none;
+  color: var(--color-text);
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+  min-height: 72px;
+}
+
+.contact-action:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.contact-action__label {
+  font-weight: 620;
+  font-size: 0.95rem;
+}
+
+.contact-action__description {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  word-break: break-word;
+}

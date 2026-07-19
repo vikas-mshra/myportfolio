@@ -1,0 +1,30 @@
+.about__layout {
+  display: grid;
+  gap: 0.5rem 3rem;
+}
+
+.about__copy {
+  max-width: 40rem;
+}
+
+.about__copy p {
+  margin: 0 0 0.85rem;
+  color: var(--color-text-muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.about__copy p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .about__layout {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+  }
+
+  .about__layout .section-heading {
+    margin-bottom: 0;
+  }
+}

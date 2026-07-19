@@ -1,19 +1,35 @@
 import React from "react";
-import { About, Footer, Header, Skills, Testimonial, Work, ChatBot } from "./container";
-import { Navbar } from "./components";
-import "./App.scss"
+import { Footer, Header } from "./components";
+import { ThemeProvider } from "./context/ThemeContext";
+import {
+  About,
+  Capabilities,
+  Contact,
+  Experience,
+  Hero,
+  SelectedWork,
+} from "./sections";
+import "./styles/global.scss";
+
+/**
+ * Purpose: Compose the single-page portfolio layout.
+ */
 const App = () => {
   return (
-    <div className="app">
-      <Navbar />
-      <Header />
-      <About />
-      <Work />
-      <Skills />
-      <Testimonial />
-      <Footer />
-      <ChatBot />
-    </div>
+    <ThemeProvider>
+      <div className="site">
+        <Header />
+        <main className="site__main">
+          <Hero />
+          <SelectedWork />
+          <Experience />
+          <Capabilities />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 };
 

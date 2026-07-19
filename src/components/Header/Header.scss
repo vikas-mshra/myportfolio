@@ -1,0 +1,140 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.site-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--color-text);
+  min-width: 0;
+}
+
+.site-header__brand:hover {
+  color: var(--color-text);
+}
+
+.site-header__monogram {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  background: var(--color-bg-elevated);
+}
+
+.site-header__name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-header__nav {
+  display: none;
+}
+
+.site-header__nav ul {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header__nav a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 520;
+}
+
+.site-header__nav a:hover {
+  color: var(--color-text);
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.site-header__menu-btn {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated);
+  cursor: pointer;
+}
+
+.site-header__menu-btn span {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  margin-inline: auto;
+  background: var(--color-text);
+}
+
+.site-header__drawer {
+  display: none;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+}
+
+.site-header__drawer--open {
+  display: block;
+}
+
+.site-header__drawer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.site-header__drawer a {
+  display: block;
+  padding: 0.8rem 0.25rem;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 540;
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (min-width: 860px) {
+  .site-header__nav {
+    display: block;
+  }
+
+  .site-header__menu-btn,
+  .site-header__drawer {
+    display: none !important;
+  }
+}

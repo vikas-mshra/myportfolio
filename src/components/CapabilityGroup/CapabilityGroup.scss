@@ -1,0 +1,36 @@
+.capability-group {
+  padding: 1rem 0;
+}
+
+.capability-group__title {
+  margin: 0 0 0.65rem;
+  font-size: 0.92rem;
+  font-weight: 620;
+}
+
+.capability-group__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.capability-group__list li {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  padding-left: 0.85rem;
+  position: relative;
+}
+
+.capability-group__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}

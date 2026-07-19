@@ -1,0 +1,51 @@
+/**
+ * Purpose: Shared design tokens for light and dark themes.
+ * Context: Imported by global styles; components use CSS variables.
+ */
+
+:root,
+[data-theme="dark"] {
+  --color-bg: #0e1114;
+  --color-bg-elevated: #161a1f;
+  --color-surface: #1c2229;
+  --color-border: #2a323c;
+  --color-text: #e8ecf1;
+  --color-text-muted: #9aa5b1;
+  --color-accent: #5b9a8b;
+  --color-accent-hover: #6fafa0;
+  --color-accent-subtle: rgba(91, 154, 139, 0.12);
+  --color-danger: #d9776f;
+  --color-focus: #7eb8aa;
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 24px rgba(0, 0, 0, 0.28);
+  --header-height: 64px;
+  --content-max: 1120px;
+  --font-sans: "Sora", "Segoe UI", sans-serif;
+  --font-display: "Source Serif 4", Georgia, serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --space-section: clamp(3.5rem, 6vw, 5.5rem);
+  --transition-fast: 160ms ease;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --color-bg: #f4f6f8;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #ffffff;
+  --color-border: #d5dce3;
+  --color-text: #151a1f;
+  --color-text-muted: #5c6773;
+  --color-accent: #2f6f63;
+  --color-accent-hover: #255a50;
+  --color-accent-subtle: rgba(47, 111, 99, 0.1);
+  --color-danger: #b42318;
+  --color-focus: #2f6f63;
+  --shadow-soft: 0 1px 0 rgba(15, 23, 32, 0.04), 0 10px 28px rgba(15, 23, 32, 0.06);
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+  }
+}
